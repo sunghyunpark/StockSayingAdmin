@@ -170,7 +170,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/gravity_left_img"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -184,7 +184,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/gravity_horizontal_img"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -198,7 +198,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/gravity_right_img"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -220,7 +220,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/gravity_top_img"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -234,7 +234,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/gravity_vertical_img"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
@@ -248,7 +248,7 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@mipmap/gravity_bottom_img"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"/>
                 </RelativeLayout>
