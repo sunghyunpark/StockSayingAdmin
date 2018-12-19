@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="view.RegisterActivity">
+
+    <RelativeLayout
+        android:id="@+id/app_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:background="@mipmap/back_img_72"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:text="명언 등록"/>
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="등록"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentRight="true"/>
+
+        <ImageButton
+            android:id="@+id/delete_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toLeftOf="@+id/save_btn"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:background="@mipmap/delete_img_72"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/contents_edit_box"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:padding="10dp"
+            android:hint="입력해주세요."
+            android:textSize="17dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:background="@null"/>
+
+        <!--구분선-->
+        <LinearLayout
+            android:id="@+id/divider"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="#9E9E9E"></LinearLayout>
+
+        <TextView
+            android:id="@+id/created_at_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/add_author_btn_shape"
+            android:padding="5dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"
+            android:text="날짜 선택"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/by_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:layout_centerVertical="true"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:text="by"/>
+
+            <TextView
+                android:id="@+id/author_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/by_tv"
+                android:layout_marginLeft="7dp"
+                android:background="@drawable/author_name_shape"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:text="선택해주세요."
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/add_author_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/author_tv"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:background="@drawable/add_author_btn_shape"
+                android:text="그룹 추가"
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimary"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9e9e9e"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="15dp"
+            android:text="정렬 / 글자 꾸미기"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/author_name_shape"
+                android:layout_weight="1">
+                <!-- 정렬 > 왼쪽 -->
+                <RelativeLayout
+                    android:id="@+id/gravity_start_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+                <!-- 정렬 > 중앙 -->
+                <RelativeLayout
+                    android:id="@+id/gravity_horizontal_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+                <!-- 정렬 > 오른쪽 -->
+                <RelativeLayout
+                    android:id="@+id/gravity_end_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@drawable/author_name_shape"
+                android:layout_weight="1">
+
+                <!-- 정렬 > 상단 -->
+                <RelativeLayout
+                    android:id="@+id/gravity_top_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+                <!-- 정렬 > 중앙 -->
+                <RelativeLayout
+                    android:id="@+id/gravity_vertical_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+
+                <!-- 정렬 > 하단 -->
+                <RelativeLayout
+                    android:id="@+id/gravity_bottom_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 글자 크기 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9e9e9e"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="15dp"
+            android:text="글자크기"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/text_size_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#263238"
+                android:layout_centerVertical="true"
+                android:textSize="15dp"
+                android:text="15"
+                android:textStyle="bold"/>
+
+            <SeekBar
+                android:id="@+id/text_size_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="100dp"
+                android:layout_toRightOf="@+id/text_size_tv"
+                android:layout_centerVertical="true"/>
+
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/up_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/up_img_72"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/down_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/down_img_72"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- 미리보기 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9e9e9e"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="15dp"
+            android:text="미리보기"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/half_black_widget">
+
+            <TextView
+                android:id="@+id/preview_created_at_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="15dp"
+                android:textColor="@color/colorWhite"/>
+
+            <TextView
+                android:id="@+id/preview_contents_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_below="@+id/preview_created_at_tv"
+                android:layout_above="@+id/preview_author_tv"
+                android:textAllCaps="true"
+                android:textIsSelectable="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/preview_author_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorWhite"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

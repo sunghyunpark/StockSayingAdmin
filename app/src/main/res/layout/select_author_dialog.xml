@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_shape_white_round"
+    android:gravity="center"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="선택"
+            android:textStyle="bold"
+            android:gravity="center_horizontal|center_vertical"
+            android:textSize="17dp"
+            android:background="@color/colorWhite"
+            android:textColor="@color/colorBlack"/>
+
+        <!--구분선-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            android:background="#ffe0e0e0"></LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/author_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@color/colorBlack"
+            android:scrollbarSize="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"/>
+
+        <!--구분선-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:orientation="horizontal"
+            android:background="#ffe0e0e0"></LinearLayout>
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="2dp"
+            android:textSize="15dp"
+            android:background="@null"
+            android:textColor="@color/colorPrimary"
+            android:text="취소"/>
+
+    </LinearLayout>
+
+</LinearLayout>

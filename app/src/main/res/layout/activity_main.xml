@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/app_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="18dp"
+            android:text="관리자"/>
+
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="등록"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentRight="true"
+            android:background="@null"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/sort_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전체보기"
+        android:textSize="15dp"
+        android:textColor="@color/colorBlack"
+        android:padding="4dp"
+        android:background="@drawable/layout_shape_black_rectangle"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"/>
+
+    <TextView
+        android:id="@+id/empty_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="15dp"
+        android:visibility="gone"
+        android:background="#eff0f1"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlack"
+        android:text="등록된 명언이 없습니다."/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/saying_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eff0f1"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
