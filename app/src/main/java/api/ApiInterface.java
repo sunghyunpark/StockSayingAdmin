@@ -33,7 +33,6 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("api/saying/upload/saying")
     Call<CommonResponse> registerSaying(@Field("contents") String contents,
-                                        @Field("date") String date,
                                         @Field("authorName") String authorName,
                                         @Field("gravityHorizontal") int gravityHorizontal,
                                         @Field("gravityVertical") int gravityVertical,

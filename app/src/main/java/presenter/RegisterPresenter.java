@@ -3,15 +3,10 @@ package presenter;
 import android.content.Context;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import api.ApiClient;
 import api.ApiInterface;
-import api.response.AuthorListResponse;
 import api.response.CommonResponse;
 import base.presenter.BasePresenter;
-import model.AuthorModel;
 import presenter.view.RegisterView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,21 +16,19 @@ import util.Util;
 public class RegisterPresenter extends BasePresenter<RegisterView>{
 
     private Context context;
-    private ArrayList<AuthorModel> authorModelArrayList;
     private ApiInterface apiService;
 
-    public RegisterPresenter(Context context, RegisterView view, ArrayList<AuthorModel> authorModelArrayList){
+    public RegisterPresenter(Context context, RegisterView view){
         super(view);
         this.context = context;
-        this.authorModelArrayList = authorModelArrayList;
         this.apiService = ApiClient.getClient().create(ApiInterface.class);
     }
 
     /*
     * 명언 신규 등록
      */
-    public void registerSaying(String contents, String date, String authorName, int gravityHorizontal, int gravityVertical, int textSize){
-        Call<CommonResponse> call = apiService.registerSaying(contents, date, authorName, gravityHorizontal, gravityVertical, textSize);
+    public void registerSaying(String contents, String authorName, int gravityHorizontal, int gravityVertical, int textSize){
+        Call<CommonResponse> call = apiService.registerSaying(contents, authorName, gravityHorizontal, gravityVertical, textSize);
         call.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {

@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,17 +23,16 @@ import com.investmentkorea.android.admin.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import base.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import model.AuthorModel;
 import model.SayingModel;
 import presenter.RegisterPresenter;
 import presenter.view.RegisterView;
+import util.Util;
 import view.dialog.SelectAuthorDialog;
 
 public class RegisterActivity extends BaseActivity implements RegisterView, TextWatcher {
@@ -59,6 +59,13 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
     @BindView(R.id.preview_author_tv) TextView previewAuthorTv;    // 미리보기 작가명
     @BindView(R.id.delete_btn) ImageButton deleteBtn;
 
+    @BindView(R.id.gravity_top_layout) ViewGroup gravityTopLayout;
+    @BindView(R.id.gravity_vertical_layout) ViewGroup gravityVerticalLayout;
+    @BindView(R.id.gravity_bottom_layout) ViewGroup gravityBottomLayout;
+    @BindView(R.id.gravity_end_layout) ViewGroup gravityEndLayout;
+    @BindView(R.id.gravity_horizontal_layout) ViewGroup gravityHorizontalLayout;
+    @BindView(R.id.gravity_start_layout) ViewGroup gravityStartLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +85,9 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
     }
 
     private void init(boolean isRegister){
-        ArrayList<AuthorModel> authorModelArrayList = new ArrayList<>();
-        registerPresenter = new RegisterPresenter(getApplicationContext(), this, authorModelArrayList);
+        setGravityBtn(gravityHorizontal, gravityVertical);
+
+        registerPresenter = new RegisterPresenter(getApplicationContext(), this);
 
         //명언 EditText 리스너 연결
         contentsEditBox.addTextChangedListener(this);
@@ -114,7 +122,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
             previewContentsTv.setText(sayingModel.getContents());
             authorTv.setText(sayingModel.getAuthorName());
             previewAuthorTv.setText(sayingModel.getAuthorName());
-            String[] createdAtArray = sayingModel.getCreatedAt().split("-");
+            String[] createdAtArray = Util.parseTimeWithoutTime(sayingModel.getCreatedAt()).split("-");
             createdAtDateStr = sayingModel.getCreatedAt();
             createdAtTv.setText(createdAtArray[0]+"년 "+createdAtArray[1]+"월 "+createdAtArray[2]+"일");
             previewCreatedAtTv.setText(createdAtArray[0]+"년 "+createdAtArray[1]+"월 "+createdAtArray[2]+"일");
@@ -191,6 +199,42 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
         finish();
     }
 
+    private void setGravityBtn(int horizon, int vertical){
+        gravityTopLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorWhite));
+        gravityVerticalLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorWhite));
+        gravityBottomLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorWhite));
+        gravityStartLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorWhite));
+        gravityEndLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorWhite));
+        gravityHorizontalLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorWhite));
+
+        switch (vertical){
+            case 1:
+                gravityTopLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                break;
+            case 2:
+                gravityVerticalLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                break;
+            case 3:
+                gravityBottomLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                break;
+        }
+
+        switch (horizon){
+            case 1:
+                gravityStartLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                break;
+            case 2:
+                gravityHorizontalLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                break;
+            case 3:
+                gravityEndLayout.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.colorPrimary));
+                break;
+        }
+
+        setPreviewTextGravity(gravityVertical, gravityHorizontal);
+
+    }
+
     @OnClick({R.id.back_btn, R.id.gravity_start_layout, R.id.gravity_horizontal_layout, R.id.gravity_end_layout, R.id.gravity_top_layout, R.id.gravity_vertical_layout, R.id.gravity_bottom_layout,
             R.id.up_layout, R.id.down_layout, R.id.created_at_tv, R.id.author_tv, R.id.save_btn, R.id.delete_btn, R.id.add_author_tv}) void onClick(View v){
         switch (v.getId()){
@@ -199,27 +243,27 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
                 break;
             case R.id.gravity_start_layout:
                 gravityHorizontal = 1;
-                setPreviewTextGravity(gravityVertical, gravityHorizontal);
+                setGravityBtn(gravityHorizontal, gravityVertical);
                 break;
             case R.id.gravity_horizontal_layout:
                 gravityHorizontal = 2;
-                setPreviewTextGravity(gravityVertical, gravityHorizontal);
+                setGravityBtn(gravityHorizontal, gravityVertical);
                 break;
             case R.id.gravity_end_layout:
                 gravityHorizontal = 3;
-                setPreviewTextGravity(gravityVertical, gravityHorizontal);
+                setGravityBtn(gravityHorizontal, gravityVertical);
                 break;
             case R.id.gravity_top_layout:
                 gravityVertical = 1;
-                setPreviewTextGravity(gravityVertical, gravityHorizontal);
+                setGravityBtn(gravityHorizontal, gravityVertical);
                 break;
             case R.id.gravity_vertical_layout:
                 gravityVertical = 2;
-                setPreviewTextGravity(gravityVertical, gravityHorizontal);
+                setGravityBtn(gravityHorizontal, gravityVertical);
                 break;
             case R.id.gravity_bottom_layout:
                 gravityVertical = 3;
-                setPreviewTextGravity(gravityVertical, gravityHorizontal);
+                setGravityBtn(gravityHorizontal, gravityVertical);
                 break;
             case R.id.up_layout:
                 if(progress >= 0 && progress < 5){
@@ -256,7 +300,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
                     showMessage("정보를 입력해주세요.");
                 }else{
                     if(isRegister){
-                        registerPresenter.registerSaying(contentsStr, createdAtDateStr, authorNameStr, gravityHorizontal, gravityVertical, (textSize+progress));
+                        registerPresenter.registerSaying(contentsStr, authorNameStr, gravityHorizontal, gravityVertical, (textSize+progress));
                         Intent returnIntent = new Intent();
                         setResult(Activity.RESULT_OK, returnIntent);
                         finish();

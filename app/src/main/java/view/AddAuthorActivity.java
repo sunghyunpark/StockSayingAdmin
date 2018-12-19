@@ -3,6 +3,8 @@ package view;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -21,14 +23,14 @@ import presenter.view.AddAuthorView;
 import util.EndlessRecyclerOnScrollListener;
 import util.adapter.AuthorAdapter;
 
-public class AddAuthorActivity extends BaseActivity implements AddAuthorView{
+public class AddAuthorActivity extends BaseActivity implements AddAuthorView, TextWatcher {
 
     private static final int LOAD_DATA_COUNT = 30;
 
+    private String beforeStr = "";
     private ArrayList<AuthorModel> authorModelArrayList;
     private AuthorAdapter authorAdapter;
     private AddAuthorPresenter addAuthorPresenter;
-    private EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener;
 
     @BindView(R.id.author_recyclerView) RecyclerView authorRecyclerView;
     @BindView(R.id.author_edit_box) EditText authorEditBox;
@@ -47,6 +49,8 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView{
         authorModelArrayList = new ArrayList<>();
         authorAdapter = new AuthorAdapter(authorModelArrayList);
 
+        authorEditBox.addTextChangedListener(this);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         addAuthorPresenter = new AddAuthorPresenter(getApplicationContext(), this, authorModelArrayList);
 
@@ -54,7 +58,7 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView{
         addAuthorPresenter.getAuthorList(true, 0);
 
         // LoadMore 리스너 등록
-        endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener(linearLayoutManager, LOAD_DATA_COUNT) {
+        EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener(linearLayoutManager, LOAD_DATA_COUNT) {
             @Override
             public void onLoadMore(int current_page) {
                 if(!authorModelArrayList.isEmpty()){
@@ -74,6 +78,26 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView{
     public void registerAuthor(){
         authorAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if(s.length() >= 10)
+        {
+            showMessage("10자까지 입력이 가능합니다.");
+            authorEditBox.setText(beforeStr);
+        }
+    }
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count,
+                                  int after) {
+        beforeStr = s.toString();
+
+    }
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
 
     @Override
     public void setAuthorList(){
