@@ -27,8 +27,8 @@ public class RegisterPresenter extends BasePresenter<RegisterView>{
     /*
     * 명언 신규 등록
      */
-    public void registerSaying(String contents, String authorName, int gravityHorizontal, int gravityVertical, int textSize){
-        Call<CommonResponse> call = apiService.registerSaying(contents, authorName, gravityHorizontal, gravityVertical, textSize);
+    public void registerSaying(String contents, String authorName, int gravityHorizontal, int gravityVertical, int textSize, String currentTime){
+        Call<CommonResponse> call = apiService.registerSaying(contents, authorName, gravityHorizontal, gravityVertical, textSize, currentTime);
         call.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {

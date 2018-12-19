@@ -53,6 +53,16 @@ public class Util {
         }
     }
 
+    public static String parseTimeWithoutTimeByCustom(String timeStr){
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        s.setTimeZone(TimeZone.getDefault());
+        try {
+            return s.format(getDate(timeStr));
+        }catch (NullPointerException e){
+            return AdminApplication.TODAY_YEAR+"-"+AdminApplication.TODAY_MONTH+"-"+AdminApplication.TODAY_DAY;
+        }
+    }
+
     private static Date getDate(String dateStr) {
         SimpleDateFormat s;
         if (dateStr.endsWith("Z")) {

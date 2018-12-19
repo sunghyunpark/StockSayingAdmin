@@ -136,6 +136,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
         SimpleDateFormat newFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         SimpleDateFormat newFormat2 = new SimpleDateFormat("yyyy-MM-dd");
 
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        String currentTime = timeFormat.format(date);
+
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             String strBeforeFormat = year+"-"+(monthOfYear+1)+"-"+dayOfMonth;
@@ -145,6 +150,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
 
                 strAfterFormat = newFormat.format(originDate);
                 createdAtDateStr = newFormat2.format(originDate);
+                createdAtDateStr += " "+currentTime;
+
             }catch (ParseException e){
                 e.printStackTrace();
             }
@@ -302,7 +309,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
                     showMessage("정보를 입력해주세요.");
                 }else{
                     if(isRegister){
-                        registerPresenter.registerSaying(contentsStr, authorNameStr, gravityHorizontal, gravityVertical, (textSize+progress));
+                        registerPresenter.registerSaying(contentsStr, authorNameStr, gravityHorizontal, gravityVertical, (textSize+progress), createdAtDateStr);
                         Intent returnIntent = new Intent();
                         setResult(Activity.RESULT_OK, returnIntent);
                         finish();

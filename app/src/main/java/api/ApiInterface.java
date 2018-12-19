@@ -36,7 +36,8 @@ public interface ApiInterface {
                                         @Field("authorName") String authorName,
                                         @Field("gravityHorizontal") int gravityHorizontal,
                                         @Field("gravityVertical") int gravityVertical,
-                                        @Field("textSize") int textSize);
+                                        @Field("textSize") int textSize,
+                                        @Field("date") String date);
 
     /*
     명언 수정

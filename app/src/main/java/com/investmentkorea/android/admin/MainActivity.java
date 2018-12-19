@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity implements MainView{
         mainPresenter = new MainPresenter(getApplicationContext(), this, sayingModelArrayList);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        sayingAdapter = new SayingAdapter(sayingModelArrayList, new SayingAdapter.SayingAdapterListener() {
+        sayingAdapter = new SayingAdapter(getApplicationContext(), sayingModelArrayList, new SayingAdapter.SayingAdapterListener() {
             @Override
             public void clickItem(SayingModel sayingModel, int position) {
                 detailPosition = position;
