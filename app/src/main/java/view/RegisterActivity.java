@@ -85,8 +85,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
     }
 
     private void init(boolean isRegister){
-        setGravityBtn(gravityHorizontal, gravityVertical);
-
         registerPresenter = new RegisterPresenter(getApplicationContext(), this);
 
         //명언 EditText 리스너 연결
@@ -126,7 +124,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
             createdAtDateStr = sayingModel.getCreatedAt();
             createdAtTv.setText(createdAtArray[0]+"년 "+createdAtArray[1]+"월 "+createdAtArray[2]+"일");
             previewCreatedAtTv.setText(createdAtArray[0]+"년 "+createdAtArray[1]+"월 "+createdAtArray[2]+"일");
+            gravityHorizontal = sayingModel.getGravityHorizontal();
+            gravityVertical = sayingModel.getGravityVertical();
         }
+
+        setGravityBtn(gravityHorizontal, gravityVertical);
     }
 
     private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
