@@ -61,8 +61,8 @@ public class SayingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 VHitem.dayTv.setTextColor(context.getResources().getColor(R.color.colorGray));
             }
 
-            VHitem.monthTv.setText(currentItem.getCreatedAt().split("-")[1]);
-            VHitem.dayTv.setText(currentItem.getCreatedAt().split("-")[2]);
+            VHitem.monthTv.setText(getCreatedAt(position).split("-")[1]);
+            VHitem.dayTv.setText(getCreatedAt(position).split("-")[2]);
 
             VHitem.contentsTv.setText(currentItem.getContents());
             VHitem.authorTv.setText(currentItem.getAuthorName());
@@ -75,6 +75,10 @@ public class SayingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             });
 
         }
+    }
+
+    private String getCreatedAt(int position){
+        return Util.parseTimeWithoutTimeByCustom(getItem(position).getCreatedAt());
     }
 
     private boolean isToday(int position){
