@@ -19,7 +19,6 @@ import retrofit2.Response;
 import util.Util;
 
 public class AddAuthorPresenter extends BasePresenter<AddAuthorView>{
-
     private Context context;
     private ApiInterface apiService;
     private ArrayList<AuthorModel> authorModelArrayList;
@@ -67,7 +66,7 @@ public class AddAuthorPresenter extends BasePresenter<AddAuthorView>{
                     getAuthorList(true, 0);
                     Util.showToast(context, "등록되었습니다.");
                 }else{
-                    Util.showToast(context, "등록이 실패되었습니다.");
+                    Util.showToast(context, commonResponse.getMessage());
                 }
             }
 

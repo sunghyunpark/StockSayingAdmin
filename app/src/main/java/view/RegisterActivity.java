@@ -116,14 +116,18 @@ public class RegisterActivity extends BaseActivity implements RegisterView, Text
 
         // 수정인 경우
         if(!isRegister){
+            long now = System.currentTimeMillis();
+            Date date = new Date(now);
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+            String currentTime = timeFormat.format(date);
+
             contentsEditBox.setText(sayingModel.getContents());
             previewContentsTv.setText(sayingModel.getContents());
             authorTv.setText(sayingModel.getAuthorName());
             previewAuthorTv.setText(sayingModel.getAuthorName());
-            String[] createdAtArray = Util.parseTimeWithoutTime(sayingModel.getCreatedAt()).split("-");
-            createdAtDateStr = sayingModel.getCreatedAt();
-            createdAtTv.setText(createdAtArray[0]+"년 "+createdAtArray[1]+"월 "+createdAtArray[2]+"일");
-            previewCreatedAtTv.setText(createdAtArray[0]+"년 "+createdAtArray[1]+"월 "+createdAtArray[2]+"일");
+            createdAtDateStr = (Util.parseTimeWithoutTimeByCustom(sayingModel.getCreatedAt())) + " "+currentTime;
+            createdAtTv.setText(Util.parseTimeWithoutTime(sayingModel.getCreatedAt()));
+            previewCreatedAtTv.setText(Util.parseTimeWithoutTime(sayingModel.getCreatedAt()));
             gravityHorizontal = sayingModel.getGravityHorizontal();
             gravityVertical = sayingModel.getGravityVertical();
         }

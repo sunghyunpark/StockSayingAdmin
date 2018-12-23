@@ -62,7 +62,6 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView, Te
             @Override
             public void onLoadMore(int current_page) {
                 if(!authorModelArrayList.isEmpty()){
-                    Log.d("AuthorNameList","onLoadMore");
                     addAuthorPresenter.getAuthorList(false, authorModelArrayList.get(authorModelArrayList.size()-1).getNo());
                 }
             }

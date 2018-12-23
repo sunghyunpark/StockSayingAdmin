@@ -44,7 +44,7 @@ public class Util {
     }
 
     public static String parseTimeWithoutTime(String timeStr){
-        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat s = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault());
         s.setTimeZone(TimeZone.getDefault());
         try {
             return s.format(getDate(timeStr));
