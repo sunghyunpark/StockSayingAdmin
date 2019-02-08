@@ -78,4 +78,26 @@ public class AddAuthorPresenter extends BasePresenter<AddAuthorView>{
             }
         });
     }
+
+    public void deleteAuthor(int no, String authorName){
+        Call<CommonResponse> call = apiService.deleteAuthor(no, authorName);
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                CommonResponse commonResponse = response.body();
+                if(commonResponse.getCode() == 200) {
+                    Util.showToast(context, "삭제되었습니다.");
+                }else{
+                    Util.showToast(context, commonResponse.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("tag", t.toString());
+                Util.showToast(context, "네트워크 연결상태를 확인해주세요.");
+            }
+        });
+    }
 }

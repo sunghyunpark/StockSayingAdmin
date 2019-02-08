@@ -1,5 +1,8 @@
 package util.adapter;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +19,19 @@ import model.AuthorModel;
 
 public class AuthorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final int TYPE_ITEM = 1;
+    private Context context;
     private ArrayList<AuthorModel> authorModelArrayList;
+    private AuthorAdapterListener authorAdapterListener;
 
-    public AuthorAdapter(ArrayList<AuthorModel> authorModelArrayList){
+    public AuthorAdapter(Context context, ArrayList<AuthorModel> authorModelArrayList, AuthorAdapterListener authorAdapterListener){
+        this.context = context;
         this.authorModelArrayList = authorModelArrayList;
+        this.authorAdapterListener = authorAdapterListener;
     }
 
+    public interface AuthorAdapterListener{
+        void deleteAuthor(int no, String authorName, int pos);
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -43,6 +53,13 @@ public class AuthorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             final Author_VH VHitem = (Author_VH)holder;
 
             VHitem.authorTv.setText(currentItem.getAuthorName());
+
+            VHitem.itemLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    authorAdapterListener.deleteAuthor(currentItem.getNo(), currentItem.getAuthorName(), position);
+                }
+            });
         }
     }
 
@@ -53,6 +70,7 @@ public class AuthorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public class Author_VH extends RecyclerView.ViewHolder{
+        @BindView(R.id.item_layout) ViewGroup itemLayout;
         @BindView(R.id.author_tv) TextView authorTv;
 
         private Author_VH(View itemView){

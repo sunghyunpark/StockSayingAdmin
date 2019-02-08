@@ -5,7 +5,8 @@ import android.app.Application;
 import java.util.Calendar;
 
 public class AdminApplication extends Application {
-    
+
+    public static final String STOCKSAYING_API = "http://1.234.44.114:3000/";
     //오늘 날짜
     public static int TODAY_YEAR;
     public static int TODAY_MONTH;

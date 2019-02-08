@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements MainView{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_WRITE) {
             // 글쓰기 후 돌아왔을 경우
-            if(resultCode == Activity.RESULT_OK){
+            if(resultCode == Activity.RESULT_OK || resultCode == Activity.RESULT_CANCELED){
                 sortMode = "all";
                 mainPresenter.getSayingList(true, 0, sortMode);
                 endlessRecyclerOnScrollListener.reset(0, true);

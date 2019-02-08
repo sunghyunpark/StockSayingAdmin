@@ -1,5 +1,7 @@
 package view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,7 +49,28 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView, Te
 
     private void init(){
         authorModelArrayList = new ArrayList<>();
-        authorAdapter = new AuthorAdapter(authorModelArrayList);
+        authorAdapter = new AuthorAdapter(getApplicationContext(), authorModelArrayList, new AuthorAdapter.AuthorAdapterListener() {
+            @Override
+            public void deleteAuthor(final int no, final String authorName, final int position) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(AddAuthorActivity.this);
+                alert.setTitle("그룹 삭제");
+                alert.setMessage("정말 삭제하시겠습니까?");
+                alert.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        authorAdapter.onItemDismiss(position);
+                        addAuthorPresenter.deleteAuthor(no, authorName);
+                    }
+                });
+                alert.setNegativeButton("아니오",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                // Canceled.
+
+                            }
+                        });
+                alert.show();
+            }
+        });
 
         authorEditBox.addTextChangedListener(this);
 

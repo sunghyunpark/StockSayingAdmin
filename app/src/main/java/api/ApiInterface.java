@@ -28,6 +28,13 @@ public interface ApiInterface {
     Call<CommonResponse> registerAuthor(@Field("authorName") String authorName);
 
     /*
+    명언 저자 삭제
+     */
+    @DELETE("api/author/delete/author/{no}/{authorName}")
+    Call<CommonResponse> deleteAuthor(@Path("no") int no,
+                                      @Path("authorName") String authorName);
+
+    /*
     명언 등록
      */
     @FormUrlEncoded
