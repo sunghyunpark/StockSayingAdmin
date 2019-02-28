@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -33,6 +32,7 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView, Te
     private ArrayList<AuthorModel> authorModelArrayList;
     private AuthorAdapter authorAdapter;
     private AddAuthorPresenter addAuthorPresenter;
+    private EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener;
 
     @BindView(R.id.author_recyclerView) RecyclerView authorRecyclerView;
     @BindView(R.id.author_edit_box) EditText authorEditBox;
@@ -81,7 +81,7 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView, Te
         addAuthorPresenter.getAuthorList(true, 0);
 
         // LoadMore 리스너 등록
-        EndlessRecyclerOnScrollListener endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener(linearLayoutManager, LOAD_DATA_COUNT) {
+        endlessRecyclerOnScrollListener = new EndlessRecyclerOnScrollListener(linearLayoutManager, LOAD_DATA_COUNT) {
             @Override
             public void onLoadMore(int current_page) {
                 if(!authorModelArrayList.isEmpty()){
@@ -120,7 +120,6 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView, Te
 
     }
 
-
     @Override
     public void setAuthorList(){
         authorAdapter.notifyDataSetChanged();
@@ -138,6 +137,7 @@ public class AddAuthorActivity extends BaseActivity implements AddAuthorView, Te
                 }else {
                     authorEditBox.setText(null);
                     addAuthorPresenter.registerAuthor(authorName);
+                    endlessRecyclerOnScrollListener.reset(0, true);
                 }
                 break;
         }
